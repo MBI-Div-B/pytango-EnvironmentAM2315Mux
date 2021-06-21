@@ -40,8 +40,10 @@ class EnvironmentAM2315MuxSensor(Device):
         try:
             self.ctrl = DeviceProxy(self.CtrlDevice)
             self.info_stream("Connection established.")
+            self.set_state(DevState.ON)
         except Exception:
             self.error_stream('Connection could not be established.')
+            self.set_state(DevState.OFF)
 
         self._temp = 0
         self._humid = 0
@@ -54,10 +56,10 @@ class EnvironmentAM2315MuxSensor(Device):
             self.error_stream('Data could not be read')
 
     def read_temperature(self):
-        return self.temp
+        return self._temp
 
     def read_humidity(self):
-        self._humid
+        return self._humid
 
 
 if __name__ == "__main__":

@@ -25,10 +25,14 @@ class EnvironmentAM2315MuxCtrl(Device):
             self.set_state(DevState.OFF)
             self.error_stream('Cannot connect!')
 
+    @command(dtype_in=int, dtype_out=(float,))
     def read_data(self, channel):
-        self.mux_select(channel)
-        self.sensor._read_data()
-        return self.sensor.temperature, self.sensor.humidity
+        try:
+            self.mux_select(channel)
+            self.sensor._read_data()
+            return self.sensor.temperature, self.sensor.humidity
+        except:
+            return -1, -1
 
     def mux_select(self, channel):
         if channel > 7:
