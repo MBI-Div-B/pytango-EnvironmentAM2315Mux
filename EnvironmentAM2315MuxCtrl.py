@@ -7,7 +7,7 @@ import AM2315
 from Adafruit_GPIO import I2C
 
 
-class EnvironmentAM2315Ctrl(Device):
+class EnvironmentAM2315MuxCtrl(Device):
     # device properties
     Address = device_property(
         dtype="str",
@@ -36,4 +36,4 @@ class EnvironmentAM2315Ctrl(Device):
         self.mux.writeRaw8(1 << channel)
 
 if __name__ == "__main__":
-    EnvironmentAM2315Ctrl.run_server()
+    EnvironmentAM2315MuxCtrl.run_server()

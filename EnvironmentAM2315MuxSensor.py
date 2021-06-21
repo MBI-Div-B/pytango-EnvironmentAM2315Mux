@@ -11,7 +11,7 @@ from tango import AttrWriteType, DevState, DebugIt, ErrorIt, InfoIt, DeviceProxy
 from tango.server import Device, attribute, command, device_property
 
 
-class EnvironmentAM2315Sensor(Device):
+class EnvironmentAM2315MuxSensor(Device):
     CtrlDevice = device_property(
         dtype="str",
         default_value="domain/family/memeber",
@@ -61,4 +61,4 @@ class EnvironmentAM2315Sensor(Device):
 
 
 if __name__ == "__main__":
-    EnvironmentAM2315Sensor.run_server()
+    EnvironmentAM2315MuxSensor.run_server()
